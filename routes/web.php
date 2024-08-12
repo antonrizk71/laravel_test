@@ -40,7 +40,7 @@ Route::post('/post/store', [PostController::class, 'store'])
 Route::get('/company', [CompanyController::class, 'index'])
     ->name('company.index');
 
-Route::get('/company/show', [CompanyController::class, 'show'])
+Route::get('/company/show/{id}', [CompanyController::class, 'show'])
     ->name('company.show');
     
 Route::get('/company/create', [CompanyController::class, 'create'])
@@ -49,13 +49,13 @@ Route::get('/company/create', [CompanyController::class, 'create'])
 Route::post('/company/store', [CompanyController::class, 'store'])
     ->name('company.store');
 
-Route::get('/company/edit', [CompanyController::class, 'edit'])
+Route::get('/company/edit/{id}', [CompanyController::class, 'edit'])
     ->name('company.edit');
 
-Route::post('/company/update', [CompanyController::class, 'update'])
+Route::put('/company/update/{id}', [CompanyController::class, 'update'])
     ->name('company.update');
 
-Route::post('/company', [CompanyController::class, 'destroy'])
+Route::delete('/company/{id}', [CompanyController::class, 'destroy'])
     ->name('company.destroy');
 
 
@@ -64,7 +64,7 @@ Route::post('/company', [CompanyController::class, 'destroy'])
 Route::get('/product', [ProductController::class, 'index'])
     ->name('product.index');
 
-Route::get('/product/show', [ProductController::class, 'show'])
+Route::get('/product/show/{id}', [ProductController::class, 'show'])
     ->name('product.show');
 Route::get('/product/create', [ProductController::class, 'create'])
     ->name('product.create');
@@ -72,11 +72,11 @@ Route::get('/product/create', [ProductController::class, 'create'])
 Route::post('/product/store', [ProductController::class, 'store'])
     ->name('product.store');
 
-Route::get('/product/edit', [ProductController::class, 'edit'])
+Route::get('/product/edit/{id}', [ProductController::class, 'edit'])
     ->name('product.edit');
 
-Route::post('/product/update', [ProductController::class, 'update'])
+Route::put('/product/update/{id}', [ProductController::class, 'update'])
     ->name('product.update');
 
-Route::post('/product', [ProductController::class, 'destroy'])
+Route::delete('/product/{id}', [ProductController::class, 'destroy'])
     ->name('product.destroy');

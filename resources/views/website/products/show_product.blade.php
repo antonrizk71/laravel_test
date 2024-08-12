@@ -48,19 +48,16 @@
                     <td>{{$product->company->id}}</td>
                     <td>{{$product->company->name}}</td>
                     <td>
-                        <form action="{{route('product.destroy')}}" method="POST" class="w-50 container text-center">
+                        <form action="{{route('product.destroy',['id'=>$product->id])}}" method="POST" class="w-50 container text-center">
                             @csrf
-                            {{-- @method('DELETE') --}}
+                            @method('DELETE')
                             <input type="submit" class="btn btn-primary " value="Delete">
-                            <input type="hidden" value="{{$product->id}}" name="id">
                         </form>
                     </td>
                     <td>
-                        <form action="{{route('product.edit')}}" method="GET" class="w-50 container text-center">
+                        <form action="{{route('product.edit',['id'=>$product->id])}}" method="GET" class="w-50 container text-center">
                             @csrf
-                            {{-- @method('put') --}}
                             <input type="submit" class="btn btn-primary" value="Update">
-                            <input type="hidden" value="{{$product->id}}" name="id">
                         </form>
                     </td>
                  

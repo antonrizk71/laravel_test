@@ -12,9 +12,9 @@
 
 <body>
     <h3 class="text-center mt-5 text-primary">Update Product</h3>
-    <form action="{{route('product.update')}}" method="POST" class="w-50 container text-center mt-5">
+    <form action="{{route('product.update',['id'=>$product->id])}}" method="POST" class="w-50 container text-center mt-5">
         @csrf
-        {{-- @method('put') --}}
+        @method('put')
         <div class="mb-3">
             <label class="form-label">Product Name</label>
             <input type="text" class="form-control" name="name" value="{{$product['name']}}">
@@ -33,14 +33,12 @@
             <option value="{{$comp->id}}" {{$product->company->id==$comp->id ? 'selected' : ''}}>{{$comp->name}}</option>
             @endforeach
         </select>
-        <input type="hidden" value="{{$product->id}}" name="id">
         <button type="submit" class="btn btn-primary mt-3 form-control">Update</button>
     </form>
-    <form action="{{route('product.destroy')}}" method="POST" class="w-50 container text-center">
+    <form action="{{route('product.destroy',['id'=>$product->id])}}" method="POST" class="w-50 container text-center">
         @csrf
-        {{-- @method('DELETE') --}}
+        @method('DELETE')
         <input type="submit" class="btn btn-primary mt-3 form-control" value="Delete">
-        <input type="hidden" value="{{$product->id}}" name="id">
     </form>
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>

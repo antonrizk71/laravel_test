@@ -69,10 +69,10 @@ class ProductController extends Controller
      * @param  \App\Models\website\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
         //
-        $product=Product::find($request['id']);
+        $product=Product::find($id);
         $company=Company::all();
         return view('website.products.show_product',compact('product','company'));
     }
@@ -83,10 +83,10 @@ class ProductController extends Controller
      * @param  \App\Models\website\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit($id)
     {
         //
-        $product=Product::find($request['id']);
+        $product=Product::find($id);
         $company=Company::all();
         return view('website.products.update_product',compact('product','company'));
     }
@@ -98,7 +98,7 @@ class ProductController extends Controller
      * @param  \App\Models\website\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,$id)
     {
         //
         $validated = $request->validate([
@@ -108,7 +108,7 @@ class ProductController extends Controller
             'comp_id' => 'required',
         ]);
 
-        Product::where('id', $request->id)->update([
+        Product::where('id', $id)->update([
             'name' => $validated['name'],
             'exdate' => $validated['exdate'],
             'details' => $validated['details'],
@@ -124,10 +124,10 @@ class ProductController extends Controller
      * @param  \App\Models\website\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy($id)
     {
         //
-        Product::find($request['id'])->delete();
+        Product::find($id)->delete();
         return redirect()->route('product.index');
     }
 }

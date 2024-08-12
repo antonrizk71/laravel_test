@@ -49,34 +49,34 @@
                     <td>{{$pro->company->id}}</td>
                     <td>{{$pro->company->name}}</td>
                     <td>
-                        <form action="{{route('product.destroy')}}" method="POST" class="w-50 container text-center">
+                        <form action="{{route('product.destroy',['id'=>$pro->id])}}" method="POST" class="w-50 container text-center">
                             @csrf
-                            {{-- @method('DELETE') --}}
+                            @method('DELETE')
                             <input type="submit" class="btn btn-primary " value="Delete">
-                            <input type="hidden" value="{{$pro->id}}" name="id">
                         </form>
                     </td>
                     <td>
-                        <form action="{{route('product.edit')}}" method="GET" class="w-50 container text-center">
+                        <form action="{{route('product.edit',['id'=>$pro->id])}}" method="GET" class="w-50 container text-center">
                             @csrf
-                            {{-- @method('put') --}}
                             <input type="submit" class="btn btn-primary" value="Update">
-                            <input type="hidden" value="{{$pro->id}}" name="id">
                         </form>
                     </td>
                     <td>
-                        <form action="{{route('product.show')}}" method="GET" class="w-50 container text-center">
+                        <form action="{{route('product.show',['id'=>$pro->id])}}" method="GET" class="w-50 container text-center">
                             @csrf
-                            {{-- @method('put') --}}
                             <input type="submit" class="btn btn-primary" value="show">
-                            <input type="hidden" value="{{$pro->id}}" name="id">
                         </form>
                     </td>
                 </tr>
                 @endforeach
 
             </tbody>
+           
         </table>
+        <form action="{{route('product.create')}}" method="GET" class="w-50 container text-center">
+            @csrf
+            <input type="submit" class="btn btn-primary " value="create">
+        </form>
     </div>
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>

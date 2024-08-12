@@ -12,9 +12,9 @@
 
 <body>
     <h3 class="text-center mt-5 text-primary">Update Company</h3>
-    <form action="{{route('company.update')}}" method="POST" class="w-50 container text-center mt-5">
+    <form action="{{route('company.update',['id'=>$company->id])}}" method="POST" class="w-50 container text-center mt-5">
         @csrf
-        {{-- @method('put') --}}
+        @method('put')
         <div class="mb-3">
             <label class="form-label">Company Name</label>
             <input type="text" class="form-control" name="name" value="{{$company['name']}}">
@@ -37,7 +37,6 @@
             <option value="Giza"{{$company->city=="Giza"?'selected' : ''}}>Giza</option>
             <option value="Assiut"{{$company->city=="Assiut"?'selected' : ''}}>Assiut</option>
         </select>
-        <input type="hidden" value="{{$company->id}}" name="id">
         <button type="submit" class="btn btn-primary mt-3 form-control">Update</button>
     </form>
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>

@@ -63,10 +63,10 @@ class CompanyController extends Controller
      * @param  \App\Models\website\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id)
     {
         //
-        $comp=Company::find($request['id']);
+        $comp=Company::find($id);
         return view('website.companies.show_company',compact('comp'));
     }
 
@@ -76,10 +76,10 @@ class CompanyController extends Controller
      * @param  \App\Models\website\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit($id)
     {
         //
-        $company = Company::find($request['id']);
+        $company = Company::find($id);
         return view('website.companies.update_company', compact('company'));
     }
 
@@ -90,7 +90,7 @@ class CompanyController extends Controller
      * @param  \App\Models\website\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request ,$id)
     {
         $validated = $request->validate([
             'name' => 'required|max:255',
@@ -99,7 +99,7 @@ class CompanyController extends Controller
             'size' => 'required',
         ]);
 
-        Company::where('id', $request->id)->update([
+        Company::where('id', $id)->update([
             'name' => $validated['name'],
             'country' => $validated['country'],
             'city' => $validated['city'],
@@ -116,11 +116,11 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function destroy(Request $request)
+    public function destroy($id)
     {
         //
 
-        $company = Company::find($request['id']);
+        $company = Company::find($id);
         $company->delete();
         return redirect()->route('company.index');
     }

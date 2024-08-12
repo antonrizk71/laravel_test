@@ -32,27 +32,24 @@
                     <td>{{$comp->country}}</td>
                     <td>{{$comp->city}}</td>
                     <td>
-                        <form action="{{route('company.destroy')}}" method="POST" class="w-50 container text-center">
+                        <form action="{{route('company.destroy',['id'=>$comp->id])}}" method="POST" class="w-50 container text-center">
                             @csrf
-                            {{-- @method('DELETE') --}}
+                            @method('DELETE')
                             <input type="submit" class="btn btn-primary " value="Delete">
-                            <input type="hidden" value="{{$comp->id}}" name="id">
                         </form>
                     </td>
                     <td>
-                        <form action="{{route('company.edit')}}" method="GET" class="w-50 container text-center">
+                        <form action="{{route('company.edit',['id'=>$comp->id])}}" method="GET" class="w-50 container text-center">
                             @csrf
-                            {{-- @method('put') --}}
+                            @method('put')
                             <input type="submit" class="btn btn-primary" value="Update">
-                            <input type="hidden" value="{{$comp->id}}" name="id">
                         </form>
                     </td>
                     <td>
-                        <form action="{{route('company.show')}}" method="GET" class="w-50 container text-center">
+                        <form action="{{route('company.show',['id'=>$comp->id])}}" method="GET" class="w-50 container text-center">
                             @csrf
-                            {{-- @method('put') --}}
+                            @method('put')
                             <input type="submit" class="btn btn-primary" value="show">
-                            <input type="hidden" value="{{$comp->id}}" name="id">
                         </form>
                     </td>
 
@@ -61,6 +58,10 @@
 
             </tbody>
         </table>
+        <form action="{{route('company.create')}}" method="GET" class="w-50 container text-center">
+            @csrf
+            <input type="submit" class="btn btn-primary " value="create">
+        </form>
     </div>
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 </body>
